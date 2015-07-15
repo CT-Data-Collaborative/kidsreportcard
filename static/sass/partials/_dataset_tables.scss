@@ -28,8 +28,13 @@
     .ectitle a, .ectitle a:link, .ectitle a:visited, .ectitle a:active { color:#bed34e; font-size:12px; font-weight:bold; }
     .ectitle a:hover { color:#9cb831; }
 
+    .subcategory-box {
+        padding-left: 2em;
+    }
+
     .ecsubtitle {
         font-family:'Roboto', Helvetica, Arial, Sans-Serif;
+        font-style: italic;
         font-weight:normal;
         width:100%;
         // color:#1dafed;
@@ -41,12 +46,19 @@
         clear:both;
     }
 
-    .ecsubtitle a, .ecsubtitle a:link, .ecsubtitle a:visited, .ecsubtitle a:active { color:#bed34e; font-size:12px; font-weight:bold; }
+    .ecsubtitle a, .ecsubtitle a:link, .ecsubtitle a:visited, .ecsubtitle a:active {
+        color:#bed34e;
+        font-size:12px;
+        font-weight:bold;
+    }
+
     .ecsubtitle a:hover { color:#9cb831; }
 
     .category-toggle, .dataset-toggle {
         float: right;
+    }
 
+    .category-toggle {
         a.dataset-openclose, a.dataset-openclose:link, a.dataset-openclose:active {
             text-decoration: none;
             color: #e47b0a;
@@ -66,9 +78,25 @@
         }
     }
 
-    // .dataset-toggle {
-    //     float: none;
-    // }
+    .dataset-toggle {
+        a.dataset-openclose, a.dataset-openclose:link, a.dataset-openclose:active {
+            text-decoration: none;
+            color: black;
+
+            i {
+                color: black;
+            }
+        }
+
+        a.dataset-openclose:hover {
+            text-decoration: none;
+            color: black;
+
+            i {
+                color: black;
+            }
+        }
+    }
 
     .ecbox {
       padding:20px 0;

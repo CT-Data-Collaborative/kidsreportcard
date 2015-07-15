@@ -68,7 +68,7 @@
                       </div>
                     </div>
                     <div class="dsbox" collapse=category.isCollapsed>
-                      <div ng-repeat="subcategory in subcategories | filter:{catgroup: category.cat}">
+                      <div class="subcategory-box" ng-repeat="subcategory in subcategories | filter:{catgroup: category.cat}">
                         <div class="ecsubtitle">
                           {{subcategory.name}}
                           <div class="dataset-toggle">

@@ -84,10 +84,10 @@ kidsReportCardApp.controller('PortalCtrl', function($scope, $http) {
     }
 
     $scope.categories = [
-        {'name': 'Headline Data Sets',
+        {'name': 'Headline Indicators',
          'cat': 'Headline',
          'isCollapsed': true},
-        {'name': 'Secondary Data Sets',
+        {'name': 'Secondary Indicators',
          'cat': 'Secondary',
          'isCollapsed': true}
     ];
