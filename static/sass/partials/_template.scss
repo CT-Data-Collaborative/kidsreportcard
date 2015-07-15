@@ -1,0 +1,38 @@
+* {
+    font: 100% $font1;
+    color: $base-color1;
+}
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+html,
+body {
+    height: 100%;
+    line-height:1.3em;
+}
+
+body {
+    background: whitesmoke;
+}
+
+.wrap {
+    min-height: 80%;
+    height: auto !important;
+    margin: 0 auto -10px;
+}
+
+#main {
+    height: 100%;
+}
+
+p {
+    font-size: 14px;
+}
+
+h1, h2, h3, h4 {
+    margin:0;
+    padding:0;
+    color:#4670a7;
+    font-family:'Roboto Condensed', Helvetica, Arial, Sans-Serif;
+    font-weight:normal;
+    line-height:1.4em;
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html ng-app="kidsReportCardApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="CT Data Collaborative - Changing the way Connecticut uses data" />
+    <meta name="keywords" content="ct, connecticut, data, ctdc" />
+    <meta name="robots" content="index,follow" />
+    <meta name="author" content="CT Data Collaborative" />
+    <script src="/static/js/vendor.js"></script>
+    <script src="/static/js/angular.min.js"></script>
+    <script src="/static/js/ui-bootstrap-tpls.min.js"></script>
+    <link rel="icon" href="ctdataicon.ico" type="image/x-icon">
+    <!-- <link rel="icon" href="http://favicon.ico" type="image/gif"> -->
+    <title>CT Data Collaborative Kid's Report Card Portal</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/vendor.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+  </head>
+  <body>
+  <div class="wrap">
+      <div id="topnav">
+        <div class="spacing">
+          <ul>
+              <li><a href="https://twitter.com/ctopendata">
+                  <i class="fa fa-inverse fa-twitter fa-lg"></i>
+                  </a>
+              </li>
+              <li><a href="https://www.facebook.com/pages/CT-Data-Collaborative/150954425018093">
+                  <i class="fa fa-inverse fa-facebook fa-lg"></i></a>
+              </li>
+              <li><a href="http://www.ctdata.org/pages/about">About</a></li>
+              <li><a href="http://www.ctdata.org/pages/news">News</a></li>
+              <li><a href="mailto:info@ctdata.org">Contact</a></li>
+              <li><a href="http://www.ctdata.org/dashboard"><i class="fa fa-tachometer fa-inverse"> My Dashboard</i></a></li>
+          </ul>
+        </div>
+      </div>
+      <div id="hdr">
+        <div class="spacing">
+          <div class="logo"><img src="/static/images/logo-main.jpg" alt="CT Data Collaborative"></div>
+          <div class="headernav">
+            <ul>
+            <li><a href="http://ctdata.org/data_by_topic"><i class="fa fa-play-circle"></i> Data by Topic</a></li>
+            <li><a href="http://ctdata.org/location"><i class="fa fa-play-circle"></i> Data by Location</a></li>
+            <li><a href="http://ctdata.org/organization"><i class="fa fa-play-circle"></i> Datasets by Organization</a></li>
+            <li><a href="http://ctdata.org/pages/data-gallery"><i class="fa fa-play-circle"></i> Data Gallery</a></li>
+            <li><a href="http://ctdata.org/pages/special-projects"><i class="fa fa-play-circle"></i> Special Projects</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <div id="content" class="row">
+          <div class="col-sm-1"></div>
+          <div class="col-sm-10">
+            <div class="row">
+              <div class="col-md-8">
+                <div id="portal" ng-controller="PortalCtrl">
+                  <h1>Kids Report Card</h1>
+                  <div ng-repeat="category in categories" id="{{category.cat}}">
+                    <div class="ectitle">{{category.name}}
+                      <div class="category-toggle">
+                        <a class="dataset-openclose" ng-click="category.isCollapsed = !category.isCollapsed">
+                          OPEN / CLOSE
+                          <i class="fa fa-arrow-down"></i>
+                          <i class="fa fa-arrow-up"></i>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="dsbox" collapse=category.isCollapsed>
+                      <div ng-repeat="subcategory in subcategories | filter:{catgroup: category.cat}">
+                        <div class="ecsubtitle">
+                          {{subcategory.name}}
+                          <div class="dataset-toggle">
+                            <a class="dataset-openclose" ng-click="subcategory.isCollapsed = !subcategory.isCollapsed">
+                              OPEN / CLOSE
+                              <i class="fa fa-arrow-down"></i>
+                              <i class="fa fa-arrow-up"></i>
+                            </a>
+                          </div>
+                        </div>
+                        <div class="dsbox" collapse=subcategory.isCollapsed>
+                          <table class="ectable">
+                            <thead>
+                              <tr>
+                                <th>Name of Dataset</th>
+                                <th>Latest Year Available</th>
+                                <th>Explore the Data</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr ng-repeat="dataset in datasets | filter:{category: category.cat, subcategory: subcategory.cat}">
+                                <td width="60%">{{dataset.name}}
+                                  <div class="md-arrows" style="float:right;">
+                                    <a ng-click="dataset.isCollapsed = !dataset.isCollapsed">
+                                      <i class="fa fa-arrow-down"></i>
+                                      <i class="fa fa-arrow-up"></i>
+                                    </a>
+                                  </div>
+                                  <div collapse=dataset.isCollapsed>
+                                    <div class="ecbox">
+                                      {{dataset.description}}
+                                    </div>
+                                  </div>
+                                </td>
+                                <td width="20%">{{dataset.latestYear}}</td>
+                                <td width="20%">
+                                <a href="http://ctdata.org/visualization/{{dataset.link}}">Explore Data</a>
+                                <br />
+                                <a href="http://ctdata.org/dataset/{{dataset.link}}">Get Raw Data</a></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div> <!--- end subcategory dsbox -->
+                      </div> <!--- end subcategory ng-repeat -->
+                    </div> <!--- end category dsbox -->
+                  </div> <!--- end category ng-repeat -->
+                  <div id="feedback">
+                     <h2>Send us your Feedback</h2>
+                     <p>Do you have features you'd like to see? Are you interesting in particular datasets?</p>
+                     <p>Send <a href="mailto:info@ctdata.org">us</a> an email and let us know!</p>
+                  </div>
+                </div> <!-- end portal -->
+              </div>
+              <div class="col-md-3">
+                <div class="contentrightnav">
+                  <div id="databytopic">
+                    <div class="spacing">
+                      <h3>Explore Data by Topic</h3>
+                      <ul>
+                        <li><a href="http://ctdata.org/data_by_topic#civic_vitality"><i class="fa fa-institution fa-2x"></i> Civic Vitality</a></li>
+                        <li><a href="http://ctdata.org/data_by_topic#demographics"><i class="fa fa-pie-chart fa-2x"></i> Demographics</a></li>
+                        <li><a href="http://ctdata.org/data_by_topic#economy"><i class="fa fa-line-chart fa-2x"></i> Economy</a></li>
+                        <li><a href="http://ctdata.org/data_by_topic#health"><i class="fa fa-medkit fa-2x"></i> Health</a></li>
+                        <li><a href="http://ctdata.org/data_by_topic#education"><i class="fa fa-graduation-cap fa-2x"></i> Education</a></li>
+                        <li><a href="http://ctdata.org/data_by_topic#housing"><i class="fa fa-home fa-2x"></i> Housing</a></li>
+                        <li><a href="http://ctdata.org/data_by_topic#safety"><i class="fa fa-lock fa-2x"></i> Safety</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1"></div>
+            </div>
+          </div>
+          <div class="col-sm-1"></div>
+        </div>
+        <div id="push"></div>
+      </div>
+      </div>
+  <div id="footer">
+      <div class="spacing">
+        <div class="footerbox">
+          <h2>About</h2>
+          <a href="http://ctdata.org">Home</a>
+          <br/>
+          <a href="http://ctdata.org/about/">About</a>
+          <br/>
+          <a href="http://ctdata.org/pages/news">News</a>
+          <br/>
+          <a href="mailto:info@ctdata.org">Contact</a>
+        </div>
+
+        <div class="footerbox">
+          <h2>Explore CT Data</h2>
+          <a href="http://ctdata.org/pages/special-projects">Special Projects</a>
+          <br/>
+          <a href="http://nccsweb.urban.org/communityplatform/ct">CT Nonprofit Strategy Platform</a>
+        </div>
+
+        <div class="footerbox">
+          <h2>Get in Touch</h2>
+          <a href="mailto:info@ctdata.org">Support & Feedback</a>
+          <br/>
+          <br/>
+          <a href="https://www.facebook.com/pages/CT-Data-Collaborative/150954425018093"><i class="fa fa-inverse fa-facebook-square fa-lg"></i> &nbsp;Find us on Facebook</a>
+          <br/>
+          <a href="https://twitter.com/ctopendata"><i class="fa fa-twitter-square fa-inverse fa-lg"></i> &nbsp;Find us on Twitter</a>
+          <br/>
+          <br/>
+          <br/>
+        </div>
+
+        <br clear="all"/>
+
+        <div class="footercopy">
+          <div class="brandcenter">
+            CTdata.org is a Project of the Connecticut Data Collaborative
+            <br/>
+            Copyright &copy; 2014 CT Data Collaborative
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/static/js/controllers.js"></script>
+    <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+           (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+             m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+               })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+                 ga('create', 'UA-27854885-8', 'auto');
+                   ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>

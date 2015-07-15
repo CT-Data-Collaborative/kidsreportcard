@@ -1,0 +1,20 @@
+#content {
+    margin-top: 35px;
+    h1 {
+        color:#4670a7;
+        font-size: 48px;
+        font-family: 'Helvetica Neue', Helvetica, Sans-Serif;
+    }
+    h2 { color:#1dafed; margin:40px 0; padding:10px 0; font-size:24px; border-bottom:1px solid #ddd; }
+    h3 { color:#4670a7; font-size:18px; border-bottom:1px dotted #ccc; padding:8px 0; }
+
+    a, #content a:link, #content a:active, #content a:visited {
+       text-decoration:none;
+        color:#e47b0a;
+    }
+
+    a:hover, #leadmessage a:hover:visited {
+       text-decoration:none;
+        color:#1dafed;
+    }
+}
